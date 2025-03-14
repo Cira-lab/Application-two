@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Storage Application</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"
+</head>
+<body>
+    <h1>Welcome to Cloud Storage simulation!!</h1>
+
+    <form action="/uploads" method="post">
+        <input type="text" name="filename" placeholder="Enter name of file">
+        <button type="submit">Submit</button>
+
+
+    </form>
+
+    <h2>Stored Files :</h2>
+    {%for file in files%}
+    <ul>
+        <li>{{file}}</li>
+        <form action="update/{{file}}" method="post">
+            <input type="text" name="newname" placeholder="New name" required style="display:inline;">
+            <button type="submit">Rename</button>
+        </form>
+        <form action="delete/{{file}}" method="post">
+            <button type="submit" >Delete</button>
+
+        </form >
+
+    </ul>
+    {%endfor%}
+    
+</body>
+</html>
